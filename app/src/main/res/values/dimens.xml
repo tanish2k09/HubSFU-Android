@@ -12,4 +12,21 @@
     <dimen name="login_padding">8dp</dimen>
     <dimen name="login_logo_padding">8dp</dimen>
     <dimen name="login_logo_size">36dp</dimen>
+
+    <dimen name="home_greet_text_size">20sp</dimen>
+    <dimen name="contextual_text_size">12sp</dimen>
+    <dimen name="avatar_size">72dp</dimen>
+    <dimen name="avatar_size_half">36dp</dimen>
+    <dimen name="weather_icon_size">72dp</dimen>
+
+    <dimen name="cat_margin_top">16dp</dimen>
+    <dimen name="cat_margin_bottom">16dp</dimen>
+    <dimen name="cat_title_text_size">16sp</dimen>
+    <dimen name="cat_info_text_size">12sp</dimen>
+    <dimen name="cat_info_icon_size">12dp</dimen>
+    <dimen name="cat_wqb_text_size">8sp</dimen>
+
+    <dimen name="course_icon_size">24dp</dimen>
+    <dimen name="course_card_corner">12dp</dimen>
+    <dimen name="course_icon_inset">16dp</dimen>
 </resources>

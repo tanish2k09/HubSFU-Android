@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import com.daisysoft.mysfu.data.constants.CourseData
 import com.daisysoft.mysfu.databinding.FragmentHomeBinding
+import com.daisysoft.mysfu.ui.components.CourseCardFragment
 
 class HomeFragment : Fragment() {
 
@@ -28,11 +32,21 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            CourseData.courses.forEachIndexed { index, _ ->
+                add<CourseCardFragment>(binding.coursesContainer.id, args = bundleOf("index" to index))
+            }
         }
+
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // TODO:
+        // 1) Refresh date and weather in VM
     }
 
     override fun onDestroyView() {

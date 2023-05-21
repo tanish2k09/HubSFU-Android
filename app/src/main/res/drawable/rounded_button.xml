@@ -5,7 +5,7 @@
             <item android:state_enabled="false">
                 <shape android:shape="rectangle">
                     <corners android:radius="40dp"/>
-d                    <solid android:color="@color/primary_disabled" />
+                    <solid android:color="@color/primary_disabled" />
                 </shape>
             </item>
             <item>
@@ -16,5 +16,4 @@ d                    <solid android:color="@color/primary_disabled" />
             </item>
         </selector>
     </item>
-
 </ripple>

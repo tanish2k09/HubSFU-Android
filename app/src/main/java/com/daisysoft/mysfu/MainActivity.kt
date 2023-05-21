@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         val radius = resources.getDimension(R.dimen.navbar_rounded_corner)
         val navView: BottomNavigationView = binding.navView
         val navBackground = navView.background as MaterialShapeDrawable
-
+        navView.background.setTint(getColor(R.color.primary_red_light))
+        window.navigationBarColor = getColor(R.color.primary_red_light)
         navBackground.shapeAppearanceModel = navBackground.shapeAppearanceModel
             .toBuilder()
             .setTopRightCorner(CornerFamily.ROUNDED, radius)
