@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.daisysoft.mysfu.R
+import com.daisysoft.mysfu.data.constants.ClubEventsData
 import com.daisysoft.mysfu.data.constants.CourseData
 import com.daisysoft.mysfu.databinding.FragmentCourseCardBinding
 import com.daisysoft.mysfu.databinding.FragmentHomeBinding
@@ -31,7 +32,12 @@ class CourseCardFragment : Fragment() {
         _binding = FragmentCourseCardBinding.inflate(inflater, container, false)
 
         val courseInfoIndex = requireArguments().getInt("index")
-        val courseInfo = CourseData.courses[courseInfoIndex]
+
+        val courseInfo = if (requireArguments().getBoolean("club")) {
+            ClubEventsData.events[courseInfoIndex]
+        } else {
+            CourseData.courses[courseInfoIndex]
+        }
 
         binding.courseIcon.setImageDrawable(resources.getDrawable(courseInfo.icon, requireContext().theme))
         binding.courseName.text = courseInfo.name

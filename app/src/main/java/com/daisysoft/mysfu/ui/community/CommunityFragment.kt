@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import com.daisysoft.mysfu.data.constants.ClubEventsData
 import com.daisysoft.mysfu.data.constants.EventData
 import com.daisysoft.mysfu.data.constants.RestaurantData
 import com.daisysoft.mysfu.databinding.FragmentCommunityBinding
+import com.daisysoft.mysfu.ui.components.CourseCardFragment
 import com.daisysoft.mysfu.ui.components.EventFragment
 import com.daisysoft.mysfu.ui.components.RestaurantFragment
 import io.kommunicate.KmChatBuilder
@@ -64,6 +66,13 @@ class CommunityFragment : Fragment() {
             setReorderingAllowed(true)
             EventData.events.forEachIndexed { index, _ ->
                 add<EventFragment>(binding.eventsContainer.id, args = bundleOf("index" to index))
+            }
+        }
+
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            ClubEventsData.events.forEachIndexed { index, _ ->
+                add<CourseCardFragment>(binding.clubContainer.id, args = bundleOf("index" to index, "club" to true))
             }
         }
 

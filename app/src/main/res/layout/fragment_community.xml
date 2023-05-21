@@ -61,28 +61,69 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:background="?android:attr/listDivider"
+    <LinearLayout
+        android:id="@+id/club_cat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/events_cat" />
+        app:layout_constraintTop_toBottomOf="@+id/events_cat"
+        tools:layout_editor_absoluteY="130dp">
+
+        <TextView
+            android:id="@+id/club_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cat_margin_top"
+            android:layout_marginBottom="@dimen/cat_margin_bottom"
+            android:text="Club Events"
+            android:textColor="@color/primary_black"
+            android:textSize="@dimen/cat_title_text_size"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/club_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:text="View all"
+            android:textColor="@color/primary_red_dark"
+            android:textSize="@dimen/cat_info_text_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/restaurants_cat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider3"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp">
+        app:layout_constraintTop_toBottomOf="@+id/club_cat"
+        tools:layout_editor_absoluteY="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginBottom="72dp">
 
         <TextView
             android:id="@+id/restaurants_title"
@@ -106,6 +147,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" />
         </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:text="View all"
+            android:textColor="@color/primary_red_dark"
+            android:textSize="@dimen/cat_info_text_size"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
