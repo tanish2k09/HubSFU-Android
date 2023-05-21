@@ -6,9 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import com.daisysoft.mysfu.data.constants.EventData
+import com.daisysoft.mysfu.data.constants.RestaurantData
 import com.daisysoft.mysfu.databinding.FragmentCommunityBinding
+import com.daisysoft.mysfu.ui.components.EventFragment
+import com.daisysoft.mysfu.ui.components.RestaurantFragment
 import io.kommunicate.KmChatBuilder
 import io.kommunicate.KmConversationBuilder
 import io.kommunicate.Kommunicate
@@ -51,6 +58,20 @@ class CommunityFragment : Fragment() {
                         ).show()
                     }
                 })
+        }
+
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            EventData.events.forEachIndexed { index, _ ->
+                add<EventFragment>(binding.eventsContainer.id, args = bundleOf("index" to index))
+            }
+        }
+
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            RestaurantData.restaurants.forEachIndexed { index, _ ->
+                add<RestaurantFragment>(binding.restaurantsContainer.id, args = bundleOf("index" to index))
+            }
         }
 
         return root

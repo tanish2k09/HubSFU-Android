@@ -9,4 +9,13 @@
 
     <color name="login_border">#A1B0CC</color>
     <color name="course_gray">#f1f1f1</color>
+
+    <color name="a_w_button">#FF9E66</color>
+    <color name="a_w">#FFD6BE</color>
+
+    <color name="bamboo_button">#A0B426</color>
+    <color name="bamboo">#E5E7B6</color>
+
+    <color name="pizza_button">#FF8888</color>
+    <color name="pizza">#FCBEBE</color>
 </resources>

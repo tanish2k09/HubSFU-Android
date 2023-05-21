@@ -4,7 +4,9 @@ data class RestaurantInfo(
     val name: String,
     val location: String,
     val hours: String,
-    val phone: String,
-    val website: String,
-    val image: Int
+    val cost: String,
+    val logo: Int,
+    val tag: String,
+    val color: Int,
+    val colorButton: Int
 )

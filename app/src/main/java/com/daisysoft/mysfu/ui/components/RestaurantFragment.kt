@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.daisysoft.mysfu.R
+import com.daisysoft.mysfu.data.constants.RestaurantData
 import com.daisysoft.mysfu.databinding.FragmentCourseCardBinding
 import com.daisysoft.mysfu.databinding.FragmentRestaurantBinding
 
@@ -28,6 +29,19 @@ class RestaurantFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
+
+        val restaurantInfoIndex = requireArguments().getInt("index")
+        val restaurantInfo = RestaurantData.restaurants[restaurantInfoIndex]
+
+        binding.restaurantName.text = restaurantInfo.name
+        binding.restaurantLocationText.text = restaurantInfo.location
+        binding.restaurantTimeText.text = restaurantInfo.hours
+        binding.costText.text = restaurantInfo.cost
+        binding.restaurantIcon.setImageDrawable(resources.getDrawable(restaurantInfo.logo, requireContext().theme))
+        binding.tag.text = restaurantInfo.tag
+        binding.restaurantCard.setBackgroundColor(resources.getColor(restaurantInfo.color, requireContext().theme))
+
+
         return binding.root
     }
 }

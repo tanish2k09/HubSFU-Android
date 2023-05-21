@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="SFU App"
+        android:text="hubSFU"
         android:textColor="@color/primary_red"
         android:textSize="36sp"
         android:textStyle="bold"
