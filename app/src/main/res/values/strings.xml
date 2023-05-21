@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MySFU</string>
+    <string name="title_home">Home</string>
+    <string name="title_community">Community</string>
+    <string name="title_transit">Transit</string>
+    <string name="title_GoSFU">GoSFU</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

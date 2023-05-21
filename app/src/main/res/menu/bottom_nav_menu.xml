@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@id/navigation_community"
+        android:icon="@drawable/community"
+        android:title="@string/title_community" />
+
+    <item
+        android:id="@id/navigation_transit"
+        android:icon="@drawable/train"
+        android:title="@string/title_transit" />
+
+    <item
+        android:id="@id/navigation_gosfu"
+        android:icon="@drawable/globe"
+        android:title="@string/title_GoSFU" />
+
+</menu>

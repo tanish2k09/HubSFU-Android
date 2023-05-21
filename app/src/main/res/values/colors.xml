@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_red">#CC0633</color>
+    <color name="primary_red_dark">#A6192E</color>
+    <color name="primary_red_darker">#A6192E</color>
+    <color name="primary_black">#343434</color>
+    <color name="primary_disabled">#787878</color>
+
+    <color name="login_border">#A1B0CC</color>
+</resources>

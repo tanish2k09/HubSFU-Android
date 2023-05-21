@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.daisysoft.mysfu.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_community"
+        android:name="com.daisysoft.mysfu.ui.community.CommunityFragment"
+        android:label="@string/title_community"
+        tools:layout="@layout/fragment_community" />
+
+    <fragment
+        android:id="@+id/navigation_transit"
+        android:name="com.daisysoft.mysfu.ui.transit.TransitFragment"
+        android:label="@string/title_transit"
+        tools:layout="@layout/fragment_transit" />
+
+    <fragment
+        android:id="@+id/navigation_gosfu"
+        android:name="com.daisysoft.mysfu.ui.gosfu.GoSFUFragment"
+        android:label="@string/title_GoSFU"
+        tools:layout="@layout/fragment_gosfu" />
+</navigation>
