@@ -12,7 +12,8 @@ sealed class CourseData {
                 "12:30pm - 2:20pm",
                 "ASB 9620",
                 "Toby Donaldson",
-                R.drawable.terminal
+                R.drawable.terminal,
+                "Quantitative"
             ),
             CourseInfo(
                 "PSYC 388",

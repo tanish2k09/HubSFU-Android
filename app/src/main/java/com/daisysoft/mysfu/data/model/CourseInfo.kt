@@ -6,5 +6,6 @@ data class CourseInfo(
     val time: String,
     val location: String,
     val instructor: String,
-    val icon: Int
+    val icon: Int,
+    val wqb: String? = null
 )

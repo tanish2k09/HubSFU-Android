@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginBottom="6dp"
+    app:cardCornerRadius="@dimen/course_card_corner"
+    tools:context=".ui.components.EventFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/event_card_bg"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/event_banner"
+            android:layout_width="@dimen/event_image_width"
+            android:layout_height="@dimen/event_image_height"
+            android:adjustViewBounds="false"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/event_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/event_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Asian Heritage Month"
+            android:textColor="@color/primary_red_dark"
+            android:textSize="@dimen/cat_title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/event_banner" />
+
+        <TextView
+            android:id="@+id/event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Sunday - May 21, 2023"
+            android:textColor="@color/primary_red_dark"
+            android:textSize="@dimen/cat_info_text_size"
+            app:layout_constraintStart_toStartOf="@id/event_title"
+            app:layout_constraintTop_toBottomOf="@id/event_title" />
+
+        <TextView
+            android:id="@+id/event_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:text="All day Yearly (on 10 dates from May 1)"
+            android:textColor="@color/primary_black"
+            android:textSize="@dimen/cat_info_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/event_title"
+            app:layout_constraintTop_toBottomOf="@id/event_date" />
+
+        <TextView
+            android:id="@+id/event_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=""
+            android:textColor="@color/primary_black"
+            android:textSize="@dimen/cat_info_text_size"
+            app:layout_constraintStart_toStartOf="@+id/event_title"
+            app:layout_constraintTop_toBottomOf="@id/event_schedule" />
+
+        <TextView
+            android:id="@+id/event_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Arts &amp; Culture"
+            android:textColor="@color/primary_black"
+            android:textSize="@dimen/cat_info_text_size"
+            app:layout_constraintStart_toStartOf="@+id/event_title"
+            app:layout_constraintTop_toBottomOf="@id/event_location" />
+
+        <TextView
+            android:id="@+id/event_presenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Presented by Equity, Diversity &amp; Inclusion"
+            android:textColor="@color/primary_black"
+            android:textSize="@dimen/cat_info_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/event_title"
+            app:layout_constraintTop_toBottomOf="@id/event_department" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

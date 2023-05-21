@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MySFU</string>
+    <string name="app_name">hubSFU</string>
     <string name="title_home">Home</string>
     <string name="title_community">Community</string>
     <string name="title_transit">Transit</string>

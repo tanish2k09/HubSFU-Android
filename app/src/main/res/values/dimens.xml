@@ -29,4 +29,7 @@
     <dimen name="course_icon_size">24dp</dimen>
     <dimen name="course_card_corner">12dp</dimen>
     <dimen name="course_icon_inset">16dp</dimen>
+
+    <dimen name="event_image_height">128dp</dimen>
+    <dimen name="event_image_width">336dp</dimen>
 </resources>

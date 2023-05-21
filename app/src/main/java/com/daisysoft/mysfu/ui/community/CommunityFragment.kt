@@ -5,9 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.daisysoft.mysfu.databinding.FragmentCommunityBinding
+import io.kommunicate.KmChatBuilder
+import io.kommunicate.KmConversationBuilder
+import io.kommunicate.Kommunicate
+import io.kommunicate.callbacks.KmCallback
 
 class CommunityFragment : Fragment() {
 
@@ -28,10 +33,26 @@ class CommunityFragment : Fragment() {
         _binding = FragmentCommunityBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textCommunity
-        communityViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        Kommunicate.init(activity?.applicationContext ?: requireContext(), "1f6c4de3c06ac14890ef56e72e18a11cc")
+
+        binding.chatbot.setOnClickListener {
+            KmConversationBuilder(requireContext())
+                .setSingleConversation(false)
+                .launchConversation(object : KmCallback {
+                    override fun onSuccess(message: Any?) {
+
+                    }
+
+                    override fun onFailure(error: Any?) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error: $error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
         }
+
         return root
     }
 

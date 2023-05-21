@@ -10,8 +10,10 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.daisysoft.mysfu.data.constants.CourseData
+import com.daisysoft.mysfu.data.constants.EventData
 import com.daisysoft.mysfu.databinding.FragmentHomeBinding
 import com.daisysoft.mysfu.ui.components.CourseCardFragment
+import com.daisysoft.mysfu.ui.components.EventFragment
 
 class HomeFragment : Fragment() {
 
@@ -21,13 +23,15 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val homeViewModel: HomeViewModel by lazy {
+        ViewModelProvider(this)[HomeViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -39,14 +43,32 @@ class HomeFragment : Fragment() {
             }
         }
 
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            EventData.events.forEachIndexed { index, _ ->
+                add<EventFragment>(binding.eventsContainer.id, args = bundleOf("index" to index))
+            }
+        }
+
+        attachViewModelListeners()
+
         return root
+    }
+
+    private fun attachViewModelListeners() {
+        homeViewModel.day.observe(viewLifecycleOwner) { day ->
+            binding.dayText.text = day
+        }
+
+        homeViewModel.date.observe(viewLifecycleOwner) { date ->
+            binding.dateText.text = date
+        }
     }
 
     override fun onResume() {
         super.onResume()
 
-        // TODO:
-        // 1) Refresh date and weather in VM
+        homeViewModel.updateDate()
     }
 
     override fun onDestroyView() {

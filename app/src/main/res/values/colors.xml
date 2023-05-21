@@ -8,5 +8,5 @@
     <color name="primary_disabled">#787878</color>
 
     <color name="login_border">#A1B0CC</color>
-    <color name="course_gray">#ECECEC</color>
+    <color name="course_gray">#f1f1f1</color>
 </resources>

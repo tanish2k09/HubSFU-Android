@@ -40,6 +40,12 @@ class CourseCardFragment : Fragment() {
         binding.courseLocationText.text = courseInfo.location
         binding.courseProfText.text = courseInfo.instructor
 
+        if (courseInfo.wqb != null) {
+            binding.courseWqb.text = courseInfo.wqb
+        } else {
+            binding.courseWqb.visibility = View.INVISIBLE
+        }
+
         return binding.root
     }
 
