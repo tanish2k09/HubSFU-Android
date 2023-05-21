@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         splashFlow(appVM)
 
         // TODO: Remove this.
-        proceed()
+//        proceed()
 
         val username = binding.username
         val password = binding.password

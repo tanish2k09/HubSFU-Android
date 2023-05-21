@@ -38,8 +38,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun revealActivity(view: View) {
-        val displayMetrics = resources.displayMetrics
-
         // TODO
         finish()
     }
