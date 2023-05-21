@@ -21,7 +21,8 @@
             android:textSize="@dimen/home_greet_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -32,7 +33,7 @@
             android:textSize="@dimen/home_greet_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/textView" />
 
         <ImageButton
             android:id="@+id/avatar"
@@ -44,7 +45,8 @@
             android:contentDescription="Avatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/user_circle" />
+            android:src="@drawable/user_circle_avatar"
+            />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/weather_img"

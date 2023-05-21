@@ -15,8 +15,8 @@
 
     <dimen name="home_greet_text_size">20sp</dimen>
     <dimen name="contextual_text_size">12sp</dimen>
-    <dimen name="avatar_size">72dp</dimen>
-    <dimen name="avatar_size_half">36dp</dimen>
+    <dimen name="avatar_size">48dp</dimen>
+    <dimen name="avatar_size_half">48dp</dimen>
     <dimen name="weather_icon_size">72dp</dimen>
 
     <dimen name="cat_margin_top">16dp</dimen>

@@ -1,16 +1,23 @@
 package com.daisysoft.mysfu.ui.transit
 
+import android.content.Context
+import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.daisysoft.mysfu.R
 import com.daisysoft.mysfu.databinding.FragmentTransitBinding
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
 
 class TransitFragment : Fragment(), OnMapReadyCallback {
 
@@ -44,6 +51,5 @@ class TransitFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(p0: GoogleMap) {
-        TODO("Not yet implemented")
     }
 }

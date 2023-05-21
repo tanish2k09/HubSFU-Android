@@ -1,17 +1,16 @@
 package com.daisysoft.mysfu
 
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.Manifest
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.daisysoft.mysfu.databinding.ActivityMainBinding
 import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.CornerSize
 import com.google.android.material.shape.MaterialShapeDrawable
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,5 +37,22 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         navView.setupWithNavController(navController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkLocationPermission()
+    }
+
+    private fun checkLocationPermission() {
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                1
+            )
+        }
     }
 }
