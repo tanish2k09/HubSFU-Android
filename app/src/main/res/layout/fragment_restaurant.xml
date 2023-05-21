@@ -5,10 +5,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginEnd="8dp"
-    android:background="@drawable/course_card_bg"
     android:id="@+id/restaurant_card"
     android:clickable="true"
-    tools:context=".ui.components.CourseCardFragment">
+    android:background="@drawable/course_card_bg"
+    tools:context=".ui.components.RestaurantFragment">
 
     <ImageView
         android:id="@+id/restaurant_icon"
@@ -136,6 +136,16 @@
                 android:text="$10 - $20"
                 android:textColor="@color/primary_black"
                 android:textSize="@dimen/cat_info_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
         </LinearLayout>
     </LinearLayout>
 

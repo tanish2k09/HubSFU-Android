@@ -1,5 +1,6 @@
 package com.daisysoft.mysfu.ui.components
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -39,7 +40,7 @@ class RestaurantFragment : Fragment() {
         binding.costText.text = restaurantInfo.cost
         binding.restaurantIcon.setImageDrawable(resources.getDrawable(restaurantInfo.logo, requireContext().theme))
         binding.tag.text = restaurantInfo.tag
-        binding.restaurantCard.setBackgroundColor(resources.getColor(restaurantInfo.color, requireContext().theme))
+        binding.restaurantCard.background.setTint(resources.getColor(restaurantInfo.color, requireContext().theme))
 
 
         return binding.root

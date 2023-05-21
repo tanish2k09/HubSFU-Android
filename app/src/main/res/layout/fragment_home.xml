@@ -46,14 +46,16 @@
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/user_circle" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/weather_img"
             android:layout_width="@dimen/weather_icon_size"
             android:layout_height="@dimen/weather_icon_size"
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:src="@drawable/weather" />
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/cloudy" />
 
         <TextView
             android:id="@+id/day_text"
@@ -111,7 +113,7 @@
             android:textSize="@dimen/contextual_text_size"
             app:layout_constraintStart_toStartOf="@+id/day_text"
             app:layout_constraintTop_toBottomOf="@+id/temperature_text"
-            android:text="Heavy rain expected" />
+            android:text="Partly cloudy :D" />
 
         <View
             android:id="@+id/divider"
