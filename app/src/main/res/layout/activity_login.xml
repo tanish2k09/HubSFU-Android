@@ -6,11 +6,7 @@
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.activity.LoginActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/newsletter_animation_view"
@@ -100,6 +96,7 @@
         android:padding="16dp"
         android:layout_gravity="start"
         android:layout_marginTop="64dp"
+        android:layout_marginBottom="@dimen/login_bottom_margin"
         android:enabled="false"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"
@@ -111,5 +108,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
          />
+
+    <View
+        android:id="@+id/login_transition_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_button"
+        android:visibility="invisible"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/login"
+        app:layout_constraintEnd_toEndOf="@id/login"
+        app:layout_constraintStart_toStartOf="@id/login"
+        app:layout_constraintTop_toTopOf="@id/login"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

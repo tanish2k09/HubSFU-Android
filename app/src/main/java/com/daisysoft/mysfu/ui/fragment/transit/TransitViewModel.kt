@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.transit
+package com.daisysoft.mysfu.ui.fragment.transit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.login
+package com.daisysoft.mysfu.ui.fragment.login
 
 /**
  * Authentication result : success (user details) or error message.

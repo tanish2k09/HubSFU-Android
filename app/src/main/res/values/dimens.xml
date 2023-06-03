@@ -1,9 +1,9 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="navbar_rounded_corner">32dp</dimen>
+
+    <dimen name="splash_margin_top">8dp</dimen>
+    <dimen name="splash_margin_bottom">16dp</dimen>
 
     <dimen name="newsletter_animation_view_height">256dp</dimen>
     <dimen name="greet_text_size">36sp</dimen>
@@ -12,6 +12,7 @@
     <dimen name="login_padding">8dp</dimen>
     <dimen name="login_logo_padding">8dp</dimen>
     <dimen name="login_logo_size">36dp</dimen>
+    <dimen name="login_bottom_margin">12dp</dimen>
 
     <dimen name="home_greet_text_size">20sp</dimen>
     <dimen name="contextual_text_size">12sp</dimen>

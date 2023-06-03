@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu
+package com.daisysoft.mysfu.ui.activity
 
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -7,6 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.daisysoft.mysfu.R
 import com.daisysoft.mysfu.databinding.ActivityMainBinding
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable

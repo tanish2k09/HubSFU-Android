@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.login
+package com.daisysoft.mysfu.ui.fragment.login
 
 /**
  * Data validation state of the login form.

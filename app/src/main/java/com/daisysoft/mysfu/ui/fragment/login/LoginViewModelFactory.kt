@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.login
+package com.daisysoft.mysfu.ui.fragment.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

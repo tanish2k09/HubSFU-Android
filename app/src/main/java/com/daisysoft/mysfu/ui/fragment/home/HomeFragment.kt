@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.home
+package com.daisysoft.mysfu.ui.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

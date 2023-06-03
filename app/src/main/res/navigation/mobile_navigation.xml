@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.daisysoft.mysfu.ui.home.HomeFragment"
+        android:name="com.daisysoft.mysfu.ui.fragment.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/navigation_transit"
-        android:name="com.daisysoft.mysfu.ui.transit.TransitFragment"
+        android:name="com.daisysoft.mysfu.ui.fragment.transit.TransitFragment"
         android:label="@string/title_transit"
         tools:layout="@layout/fragment_transit" />
 
     <fragment
         android:id="@+id/navigation_gosfu"
-        android:name="com.daisysoft.mysfu.ui.gosfu.GoSFUFragment"
+        android:name="com.daisysoft.mysfu.ui.fragment.gosfu.GoSFUFragment"
         android:label="@string/title_GoSFU"
         tools:layout="@layout/fragment_gosfu" />
 </navigation>

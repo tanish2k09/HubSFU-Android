@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.transit
+package com.daisysoft.mysfu.ui.fragment.transit
 
 import android.content.Context
 import android.location.LocationManager

@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.login
+package com.daisysoft.mysfu.ui.fragment.login
 
 /**
  * User details post authentication that is exposed to the UI

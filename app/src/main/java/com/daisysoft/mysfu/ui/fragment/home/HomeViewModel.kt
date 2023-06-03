@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.home
+package com.daisysoft.mysfu.ui.fragment.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

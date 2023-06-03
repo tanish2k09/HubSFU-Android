@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:theme="@style/Theme.MySFU.Splash"
-    tools:context=".SplashActivity">
+    tools:context=".ui.activity.SplashActivity">
 
     <TextView
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/splash_margin_top"
         android:text="Welcome To"
         android:textColor="@color/primary_black"
         android:textSize="36sp"
@@ -35,7 +35,7 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
@@ -44,9 +44,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mysfu_text"
         app:lottie_autoPlay="true"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/splash"
-        app:lottie_enableMergePathsForKitKatAndAbove="true"/>
+        app:lottie_rawRes="@raw/splash" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -65,12 +65,15 @@
         android:id="@+id/tap_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="@dimen/splash_margin_bottom"
         android:text="Tap to continue"
         android:textColor="@android:color/secondary_text_dark_nodisable"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/floatingActionButton" />
+        app:layout_constraintTop_toBottomOf="@id/floatingActionButton"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

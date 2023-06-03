@@ -1,4 +1,4 @@
-package com.daisysoft.mysfu.ui.gosfu
+package com.daisysoft.mysfu.ui.fragment.gosfu
 
 import androidx.lifecycle.ViewModel
 
