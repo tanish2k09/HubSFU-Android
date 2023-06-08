@@ -1,27 +1,25 @@
 package com.daisysoft.mysfu.ui.activity
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
-import android.animation.ValueAnimator
+import android.animation.*
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import android.content.res.ColorStateList
+import android.graphics.drawable.GradientDrawable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
+import android.view.animation.*
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.Toast
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import com.daisysoft.AppViewModel
 import com.daisysoft.mysfu.R
 import com.daisysoft.mysfu.databinding.ActivityLoginBinding
@@ -29,16 +27,15 @@ import com.daisysoft.mysfu.ui.components.TransparentActivity
 
 import com.daisysoft.mysfu.ui.fragment.login.LoginViewModel
 import com.daisysoft.mysfu.ui.fragment.login.LoginViewModelFactory
-import com.daisysoft.mysfu.utils.StartActivityForTransitionContract
-import kotlinx.coroutines.delay
+import kotlin.math.max
 
 class LoginActivity : TransparentActivity() {
 
     private lateinit var appVM: AppViewModel
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
-    private val splashTransitionResult = registerForActivityResult(StartActivityForTransitionContract()) {
-        transitionFromSplash()
+    private val splashTransitionResult = registerForColorResult {
+        transitionFromSplash(it)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +48,7 @@ class LoginActivity : TransparentActivity() {
         splashFlow()
 
         // TODO: Remove this.
-//        proceed()
+//        proceedWithTransition()
 
         val username = binding.username
         val password = binding.password
@@ -59,6 +56,7 @@ class LoginActivity : TransparentActivity() {
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())[LoginViewModel::class.java]
 
+        login.isEnabled = true
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
 
@@ -84,7 +82,7 @@ class LoginActivity : TransparentActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-            proceed()
+            proceedWithTransition()
         })
 
         username.afterTextChanged {
@@ -119,11 +117,11 @@ class LoginActivity : TransparentActivity() {
         }
 
         fitWithinSystemBars(binding.newsletterAnimationView, 0, binding.login, resources.getDimensionPixelOffset(R.dimen.login_bottom_margin))
-        fitBottomWithinSystemBars(binding.loginTransitionOverlay, resources.getDimensionPixelOffset(R.dimen.login_bottom_margin))
     }
 
     private fun splashFlow() {
         if (appVM.shouldShowSplash() || true) {
+
             splashTransitionResult.launch(Intent(this, SplashActivity::class.java))
             setupViewsForSplashTransition()
         }
@@ -143,14 +141,15 @@ class LoginActivity : TransparentActivity() {
             val overlayCenterY = resources.displayMetrics.heightPixels / 2 - transitionView.height / 2
             val fullScaleX = resources.displayMetrics.widthPixels * 1.5f / transitionView.width.toFloat()
             val fullScaleY = resources.displayMetrics.heightPixels * 1.5f / transitionView.height.toFloat()
+            val fullScale = max(fullScaleX, fullScaleY)
 
             transitionView.translationY = overlayCenterY - transitionView.y
-            transitionView.scaleX = fullScaleX
-            transitionView.scaleY = fullScaleY
+            transitionView.scaleX = fullScale
+            transitionView.scaleY = fullScale
         }
     }
 
-    private fun transitionFromSplash() {
+    private fun transitionFromSplash(splashColor: Int) {
         Log.d("LoginActivity", "transitionFromSplash")
         val transitionView = binding.login
         val scaleDownDuration = resources.getInteger(R.integer.splash_login_scale_duration).toLong()
@@ -160,13 +159,12 @@ class LoginActivity : TransparentActivity() {
         val scaleYHolder = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f)
         val translationYHolder = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f)
         val shiftDuration = resources.getInteger(R.integer.splash_login_shift_duration).toLong()
-        val shiftDelay = resources.getInteger(R.integer.splash_login_shift_delay).toLong()
         val textFadeDuration = resources.getInteger(R.integer.splash_login_text_fade_duration).toLong()
         val textFadeDelay = resources.getInteger(R.integer.splash_login_text_fade_delay).toLong()
 
         ObjectAnimator.ofPropertyValuesHolder(transitionView, scaleXHolder, scaleYHolder).apply {
             duration = scaleDownDuration
-            interpolator = DecelerateInterpolator()
+            interpolator = AccelerateDecelerateInterpolator()
             start()
         }
 
@@ -177,11 +175,11 @@ class LoginActivity : TransparentActivity() {
             start()
         }
 
-        val redColor = resources.getColor(R.color.primary_red, theme)
         val disabledColor = resources.getColor(R.color.primary_disabled, theme)
         val originalBG = transitionView.backgroundTintList
-        ValueAnimator.ofArgb(redColor, disabledColor).apply {
+        ValueAnimator.ofArgb(splashColor, disabledColor).apply {
             duration = shiftDuration
+            interpolator = LinearInterpolator()
             addUpdateListener {
                 transitionView.background.setTint(it.animatedValue as Int)
             }
@@ -191,7 +189,6 @@ class LoginActivity : TransparentActivity() {
                     transitionView.background.setTintList(originalBG)
                 }
             })
-            startDelay = shiftDelay
             start()
         }
         ValueAnimator.ofArgb(getColor(android.R.color.transparent), getColor(android.R.color.white)).apply {
@@ -205,13 +202,171 @@ class LoginActivity : TransparentActivity() {
 
     }
 
+    private fun loginShakeAnimation() {
+        binding.login.isClickable = false
+        val shakeDuration = resources.getInteger(R.integer.login_button_fail_shake_duration).toLong()
+        val resetDuration = resources.getInteger(R.integer.login_button_fail_reset_duration).toLong()
+        val shakeXHolder = PropertyValuesHolder.ofFloat(View.TRANSLATION_X, 0f, 25f, -25f, 25f, -25f, 15f, -15f, 6f, -6f, 0f)
+        val scaleXHolder = PropertyValuesHolder.ofFloat(View.SCALE_X, 1.1f)
+        val scaleYHolder = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.1f)
+        ObjectAnimator
+            .ofPropertyValuesHolder(binding.login, shakeXHolder, scaleXHolder, scaleYHolder)
+            .setDuration(shakeDuration)
+            .start();
+
+        val resetAnimatorSet = AnimatorSet()
+        resetAnimatorSet.apply {
+            playTogether(
+                ObjectAnimator.ofFloat(binding.login, "scaleX", 1f),
+                ObjectAnimator.ofFloat(binding.login, "scaleY", 1f)
+            )
+            interpolator = DecelerateInterpolator()
+            duration = resetDuration
+            startDelay = shakeDuration
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    binding.login.isClickable = true
+                }
+            })
+            start()
+        }
+    }
     private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
+        // Hide the keyboard
+        getSystemService(Context.INPUT_METHOD_SERVICE)?.let {
+            (it as InputMethodManager).hideSoftInputFromWindow(binding.root.windowToken, 0)
+        }
+
+        // Shake the login button
+        loginShakeAnimation()
     }
 
     private fun proceed() {
         startActivity(Intent(this, MainActivity::class.java))
-//        finish()
+    }
+
+    private fun proceedWithTransition() {
+        binding.login.isClickable = false
+
+        for (view in listOf(binding.newsletterAnimationView, binding.greetingText, binding.username, binding.password)) {
+            AnimatorInflater.loadAnimator(this, R.animator.fade_up_animator).apply {
+                setTarget(view)
+                start()
+            }
+        }
+
+        // Fade the text
+        // Make the button a circle
+        // Shrink it while moving it down to the bottom edge of the screen
+        val transitionView = binding.login
+        val textFadeDuration = resources.getInteger(R.integer.main_login_button_fade_duration).toLong()
+        val shrinkSize = resources.getDimensionPixelSize(R.dimen.main_login_shrink_size)
+        val shrinkDuration = resources.getInteger(R.integer.main_login_button_shrink_duration).toLong()
+        val fillDuration = resources.getInteger(R.integer.main_login_button_fill_duration).toLong()
+        val fillDelay = resources.getInteger(R.integer.main_login_button_fill_delay).toLong()
+        val shiftDuration = resources.getInteger(R.integer.main_login_button_translate_duration).toLong()
+
+        ValueAnimator.ofArgb(getColor(android.R.color.white), getColor(android.R.color.transparent)).apply {
+            duration = textFadeDuration
+            addUpdateListener {
+                transitionView.setTextColor(it.animatedValue as Int)
+            }
+            start()
+        }
+
+        val typedVal = TypedValue()
+        var actionBarHeight = 0
+        if (theme.resolveAttribute(android.R.attr.actionBarSize, typedVal, true)) {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(
+                typedVal.data,
+                resources.displayMetrics
+            )
+        }
+
+        AnimatorSet().apply {
+            playTogether(
+                ValueAnimator.ofInt(transitionView.width, shrinkSize).apply {
+                    addUpdateListener {
+                        transitionView.updateLayoutParams { width = it.animatedValue as Int }
+                    }
+                },
+                ValueAnimator.ofInt(transitionView.height, shrinkSize).apply {
+                    addUpdateListener {
+                        transitionView.updateLayoutParams { height = it.animatedValue as Int }
+                    }
+                },
+            )
+            interpolator = DecelerateInterpolator()
+            duration = shrinkDuration
+            startDelay = textFadeDuration
+            start()
+        }
+
+        val bottomInset = transitionView.rootWindowInsets.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.systemBars()).bottom
+        val deviceWidth = resources.displayMetrics.widthPixels
+        val finalHeight = bottomInset + actionBarHeight
+        val translationFinal = resources.displayMetrics.heightPixels - transitionView.y + transitionView.height / 2 - actionBarHeight
+        ObjectAnimator.ofFloat(transitionView, "translationY", translationFinal).apply {
+            interpolator = DecelerateInterpolator()
+            duration = shiftDuration
+            startDelay = textFadeDuration
+            start()
+        }
+
+        val redColor = getColor(R.color.primary_red)
+        val navBarColor = getColor(R.color.primary_red_light)
+        val startingCornerRadius = resources.getDimensionPixelSize(R.dimen.login_button_corner).toFloat()
+        val finalCornerRadius = resources.getDimensionPixelSize(R.dimen.navbar_rounded_corner).toFloat()
+        val transitionViewBg = GradientDrawable().apply {
+            setColor(redColor)
+            cornerRadius = startingCornerRadius
+        }
+        transitionView.background = transitionViewBg
+        AnimatorSet().apply {
+            playTogether(
+                ValueAnimator.ofInt(transitionView.width, deviceWidth).apply {
+                    addUpdateListener {
+                        transitionView.updateLayoutParams { width = it.animatedValue as Int }
+                    }
+                },
+                ValueAnimator.ofInt(transitionView.height, finalHeight).apply {
+                    addUpdateListener {
+                        transitionView.updateLayoutParams { height = it.animatedValue as Int }
+                    }
+                },
+                ValueAnimator.ofArgb(redColor, navBarColor).apply {
+                    addUpdateListener {
+                        transitionView.background.setTint(it.animatedValue as Int)
+                    }
+                },
+                ValueAnimator.ofFloat(startingCornerRadius, finalCornerRadius).apply {
+                    addUpdateListener {
+                        val cornerRadius = it.animatedValue as Float
+                        transitionViewBg.cornerRadii = floatArrayOf(
+                            cornerRadius,
+                            cornerRadius,
+                            cornerRadius,
+                            cornerRadius,
+                            finalCornerRadius - cornerRadius,
+                            finalCornerRadius - cornerRadius,
+                            finalCornerRadius - cornerRadius,
+                            finalCornerRadius - cornerRadius
+                        )
+                    }
+                }
+            )
+            interpolator = DecelerateInterpolator()
+            duration = fillDuration
+            startDelay = textFadeDuration + shrinkDuration + fillDelay
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    proceed()
+                    overridePendingTransition(0, android.R.anim.fade_out)
+                    finish()
+                }
+            })
+            start()
+        }
     }
 }
 

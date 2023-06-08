@@ -1,10 +1,11 @@
 package com.daisysoft.mysfu.ui.activity
 
+import android.animation.AnimatorInflater
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.view.animation.*
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ import com.daisysoft.AppViewModel
 import com.daisysoft.mysfu.R
 import com.daisysoft.mysfu.databinding.ActivitySplashBinding
 import com.daisysoft.mysfu.ui.components.TransparentActivity
+import com.daisysoft.mysfu.utils.StartActivityForTransitionContract
 import kotlin.math.hypot
 
 class SplashActivity : TransparentActivity() {
@@ -27,7 +29,7 @@ class SplashActivity : TransparentActivity() {
         val stateVM = ViewModelProvider(this)[AppViewModel::class.java]
 
         binding.floatingActionButton.setOnClickListener {
-            revealActivity(it)
+            revealActivity()
             stateVM.flagShowSplash()
         }
 
@@ -37,10 +39,18 @@ class SplashActivity : TransparentActivity() {
         )
     }
 
-    private fun revealActivity(view: View) {
-        // Pause the lottie animation for efficiency and make FAB un-clickable
-        binding.animationView.pauseAnimation()
+    private fun revealActivity() {
+        // make FAB un-clickable
         binding.floatingActionButton.isClickable = false
+
+        // Start the fading animations for most elements
+        for (fadingView in listOf(
+                binding.welcomeText, binding.mysfuText, binding.animationView)) {
+            AnimatorInflater.loadAnimator(this, R.animator.fade_up_animator).apply {
+                setTarget(fadingView)
+                start()
+            }
+        }
 
         // Get durations from resources
         val translateDuration = resources.getInteger(R.integer.fab_ripple_translate_duration).toLong()
@@ -64,7 +74,6 @@ class SplashActivity : TransparentActivity() {
             start()
         }
 
-
         // Shrink and then explode the FAB to fill the screen
         val displayHypo = hypot(resources.displayMetrics.widthPixels.toDouble(), resources.displayMetrics.heightPixels.toDouble()).toFloat() / 1.5f
         val fabScaleUp = displayHypo * 2 / binding.floatingActionButton.height
@@ -86,6 +95,9 @@ class SplashActivity : TransparentActivity() {
             startDelay = scaleDownDuration
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: android.animation.Animator) {
+                    val resultIntent = Intent()
+                        .putExtra(StartActivityForTransitionContract.LAST_COLOR_KEY, getColor(R.color.primary_red))
+                    this@SplashActivity.setResult(RESULT_OK, resultIntent)
                     this@SplashActivity.finish()
                     overridePendingTransition(0, 0)
                 }

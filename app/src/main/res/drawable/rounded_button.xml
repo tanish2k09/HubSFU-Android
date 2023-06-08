@@ -4,13 +4,13 @@
         <selector>
             <item android:state_enabled="false">
                 <shape android:shape="rectangle">
-                    <corners android:radius="40dp"/>
+                    <corners android:radius="@dimen/login_button_corner"/>
                     <solid android:color="@color/primary_disabled" />
                 </shape>
             </item>
             <item>
                 <shape android:shape="rectangle">
-                    <corners android:radius="40dp"/>
+                    <corners android:radius="@dimen/login_button_corner"/>
                     <solid android:color="@color/primary_red" />
                 </shape>
             </item>

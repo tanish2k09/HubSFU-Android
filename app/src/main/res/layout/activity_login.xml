@@ -109,16 +109,5 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
          />
 
-    <View
-        android:id="@+id/login_transition_overlay"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/rounded_button"
-        android:visibility="invisible"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@id/login"
-        app:layout_constraintEnd_toEndOf="@id/login"
-        app:layout_constraintStart_toStartOf="@id/login"
-        app:layout_constraintTop_toTopOf="@id/login"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

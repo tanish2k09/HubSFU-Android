@@ -10,6 +10,7 @@
     <dimen name="login_text_size">20sp</dimen>
     <dimen name="login_border">8dp</dimen>
     <dimen name="login_padding">8dp</dimen>
+    <dimen name="login_button_corner">40dp</dimen>
     <dimen name="login_logo_padding">8dp</dimen>
     <dimen name="login_logo_size">36dp</dimen>
     <dimen name="login_bottom_margin">12dp</dimen>
@@ -33,4 +34,8 @@
 
     <dimen name="event_image_height">128dp</dimen>
     <dimen name="event_image_width">336dp</dimen>
+
+    <dimen name="community_fab_margin_bottom">16dp</dimen>
+    <dimen name="main_login_shrink_size">12dp</dimen>
+
 </resources>

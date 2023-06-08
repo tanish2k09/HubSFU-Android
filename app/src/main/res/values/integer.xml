@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="fab_ripple_explode_duration">400</integer>
-    <integer name="fab_ripple_scale_down_duration">400</integer>
+    <integer name="fab_ripple_explode_duration">500</integer>
+    <integer name="fab_ripple_scale_down_duration">500</integer>
     <integer name="fab_ripple_scale_down_factor">4</integer>
-    <integer name="fab_ripple_translate_duration">800</integer>
-    <integer name="fab_ripple_icon_fade_duration">250</integer>
+    <integer name="fab_ripple_translate_duration">1000</integer>
+    <integer name="fab_ripple_icon_fade_duration">200</integer>
 
-    <integer name="splash_login_scale_duration">500</integer>
-    <integer name="splash_login_translate_delay">250</integer>
+    <integer name="splash_login_scale_duration">1000</integer>
+    <integer name="splash_login_translate_delay">100</integer>
     <integer name="splash_login_translate_duration">500</integer>
-    <integer name="splash_login_shift_delay">0</integer>
     <integer name="splash_login_shift_duration">1000</integer>
     <integer name="splash_login_text_fade_duration">500</integer>
-    <integer name="splash_login_text_fade_delay">750</integer>
+    <integer name="splash_login_text_fade_delay">800</integer>
+
+    <integer name="login_button_fail_shake_duration">500</integer>
+    <integer name="login_button_fail_reset_duration">250</integer>
+
+    <integer name="main_login_button_fade_duration">250</integer>
+    <integer name="main_login_button_shrink_duration">500</integer>
+    <integer name="main_login_button_fill_delay">250</integer>
+    <integer name="main_login_button_fill_duration">500</integer>
+    <integer name="main_login_button_translate_duration">1250</integer>
 </resources>

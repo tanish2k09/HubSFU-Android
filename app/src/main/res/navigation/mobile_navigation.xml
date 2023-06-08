@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_community"
-        android:name="com.daisysoft.mysfu.ui.community.CommunityFragment"
+        android:name="com.daisysoft.mysfu.ui.fragment.community.CommunityFragment"
         android:label="@string/title_community"
         tools:layout="@layout/fragment_community" />
 

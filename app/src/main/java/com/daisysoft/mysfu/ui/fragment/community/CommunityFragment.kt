@@ -1,12 +1,14 @@
-package com.daisysoft.mysfu.ui.community
+package com.daisysoft.mysfu.ui.fragment.community
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
@@ -18,6 +20,7 @@ import com.daisysoft.mysfu.databinding.FragmentCommunityBinding
 import com.daisysoft.mysfu.ui.components.CourseCardFragment
 import com.daisysoft.mysfu.ui.components.EventFragment
 import com.daisysoft.mysfu.ui.components.RestaurantFragment
+import com.daisysoft.mysfu.ui.components.TransparentActivity
 import io.kommunicate.KmChatBuilder
 import io.kommunicate.KmConversationBuilder
 import io.kommunicate.Kommunicate
@@ -80,6 +83,34 @@ class CommunityFragment : Fragment() {
             setReorderingAllowed(true)
             RestaurantData.restaurants.forEachIndexed { index, _ ->
                 add<RestaurantFragment>(binding.restaurantsContainer.id, args = bundleOf("index" to index))
+            }
+        }
+
+        if (activity is TransparentActivity) {
+
+            val typedVal = TypedValue()
+            (activity as TransparentActivity).apply {
+                fitTopWithinSystemBars(binding.communityTopLayout, 0)
+
+                if (requireContext().theme.resolveAttribute(
+                        android.R.attr.actionBarSize,
+                        typedVal,
+                        true
+                    )
+                ) {
+                    val inset = TypedValue.complexToDimensionPixelSize(
+                        typedVal.data,
+                        resources.displayMetrics
+                    )
+
+                    fitBottomWithinSystemBars(
+                        binding.communityTopNestedScrollView,
+                        inset,
+                        consume = false
+                    )
+
+                    fitBottomWithinSystemBars(binding.chatbot, binding.chatbot.marginBottom + inset)
+                }
             }
         }
 

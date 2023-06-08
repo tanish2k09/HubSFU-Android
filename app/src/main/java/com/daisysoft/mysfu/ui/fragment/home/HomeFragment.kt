@@ -1,10 +1,12 @@
 package com.daisysoft.mysfu.ui.fragment.home
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
@@ -14,6 +16,7 @@ import com.daisysoft.mysfu.data.constants.EventData
 import com.daisysoft.mysfu.databinding.FragmentHomeBinding
 import com.daisysoft.mysfu.ui.components.CourseCardFragment
 import com.daisysoft.mysfu.ui.components.EventFragment
+import com.daisysoft.mysfu.ui.components.TransparentActivity
 
 class HomeFragment : Fragment() {
 
@@ -52,6 +55,29 @@ class HomeFragment : Fragment() {
 
         attachViewModelListeners()
 
+        if (activity is TransparentActivity) {
+
+            val typedVal = TypedValue()
+            (activity as TransparentActivity).apply {
+                fitTopWithinSystemBars(binding.homeTopLayoutContainer, 0)
+
+                if (requireContext().theme.resolveAttribute(
+                        android.R.attr.actionBarSize,
+                        typedVal,
+                        true
+                    )
+                ) {
+                    fitBottomWithinSystemBars(
+                        binding.homeTopNestedScrollView,
+                        TypedValue.complexToDimensionPixelSize(
+                            typedVal.data,
+                            resources.displayMetrics
+                        ),
+                        consume = false
+                    )
+                }
+            }
+        }
         return root
     }
 
